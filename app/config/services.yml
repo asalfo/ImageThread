@@ -1,0 +1,9 @@
+# Learn more about services, parameters and containers at
+# http://symfony.com/doc/current/book/service_container.html
+parameters:
+    upload_dir : "uploads/images"
+
+services:
+    app_image_manager:
+        class: AppBundle\Manager\ImageManager
+        arguments: [ '@doctrine.orm.entity_manager', '%kernel.root_dir%', '%upload_dir%']

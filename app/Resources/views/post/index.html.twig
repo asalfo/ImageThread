@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+
+{% block body %}
+        <div class="col-lg-8 col-lg-offset-3">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <form name="post" method="post" action="{{ path("_new") }}" role="form"
+                          enctype="multipart/form-data">
+                        <div class="form-group">
+                            <div class="controls">
+                                <input type="text" id="post_title" name="title" novalidate="novalidate"
+                                       class="input-large form-control" placeholder="Image title"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="controls">
+                                <input type="file" id="post_file" name="image" required="required" class="input-large"
+                                       placeholder="Image file"/>
+                            </div>
+                        </div>
+                        <button class="btn btn-default">Upload</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    <div id="post_box" class="col-lg-8 col-lg-offset-3">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                {% for post in posts %}
+                    <div class="">
+                        <div class="thumbnail">
+                            <div class="caption">
+                                <h3>{{ post.title }}</h3>
+                            </div>
+                            <img src="{{ base_dir ~ post.imagePath }}" alt="{{ post.title }}">
+
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
