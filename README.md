@@ -2,7 +2,7 @@
 ====
 This miniproject create a simplified forum web app, containing only one thread of
 discussion, where each post is an image with a title, a bit like Instagram.
- ## Requirements
+## Requirements
 1. Initially only the Top bar and the Reply box are visible.
 2. Successfully uploading an image creates a post.
 3. Empty title is allowed.
