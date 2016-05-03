@@ -45,13 +45,16 @@ class PostController extends Controller
         $image = $request->files->get("image");
         $title = $request->get("title");
 
-        try {
-            $status = $this->get('app_image_manager')->uploadFile($image, $title);
-            $this->showErrorMessage($status);
-        } catch (\Exception $ex) {
-            $this->showErrorMessage(ImageManager::STATUS_ERROR,$ex->getMessage());
+        if(null != $image) {
+            try {
+                $status = $this->get('app_image_manager')->uploadFile($image, $title);
+                $this->showErrorMessage($status);
+            } catch (\Exception $ex) {
+                $this->showErrorMessage(ImageManager::STATUS_ERROR);
+            }
+        }else{
+            $this->showErrorMessage(ImageManager::STATUS_INVALID);
         }
-
 
         return $this->redirectToRoute('_homepage');
     }
