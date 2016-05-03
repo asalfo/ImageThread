@@ -30,13 +30,13 @@
                 <div class="panel-body">
                     <div class="btn-group btn-group-justified" role="group" aria-label="Top Bar">
                         <div class="btn-group" role="group">
-                            Posts :{{ count }}
+                            Posts :<span id="posts-count">{{ count }} </span>
                         </div>
                         <div class="btn-group" role="group">
                             <a href="{{ path("_export") }}" class="btn btn-default">Export</a>
                         </div>
                         <div class="btn-group" role="group">
-                            Views : {{ views }}
+                            Views : <span id="views-count">{{ views }} </span>
                         </div>
                     </div>
 
@@ -51,6 +51,23 @@
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="/bootstrap/js/bootstrap.min.js"></script>
-{% endblock %}
+<script>
+    function upadate() {
+        $.get("{{ path("_count") }}", function (data) {
+            $('#views-count').html(data.views);
+            $('#posts-count').html(data.posts);
+        }).done(function() {
+            console.log("Success");
+        }).fail(function(data) {
+            console.log("KO");
+        });
+
+
+    }
+    $().ready(function () {
+        setInterval(upadate, 15000);
+    });
+</script>
+        {% endblock %}
 </body>
 </html>

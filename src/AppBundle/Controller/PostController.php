@@ -5,6 +5,7 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\Post;
 use AppBundle\Manager\ImageManager;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -53,6 +54,23 @@ class PostController extends Controller
 
 
         return $this->redirectToRoute('_homepage');
+    }
+
+
+
+    /**
+     * Retrieve view and posts numbers.
+     * @param Request $request
+     * @return JsonResponse
+     * @Route("/count", name="_count")
+     * @Method("GET")
+     */
+    public function updateAction(Request $request) {
+        $em = $this->getDoctrine()->getManager();
+        $count = $em->getRepository('AppBundle:Post')->count();
+        $views = $em->getRepository('AppBundle:Config')->views();
+
+        return new JsonResponse(['posts'=>$count,'views'=>$views]);
     }
 
     /**
