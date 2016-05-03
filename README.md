@@ -14,8 +14,7 @@ well.
 8. Performance: The post must be visible within 2 seconds, and all the images must be
 complete loading within 5 seconds on a 10 Mbps Internet connection.
 9. Clicking the Export button produces a CSV file with a header row and two columns:
-(image) Title and Filename. Bonus points: Make it possible to export the Excel format as
-well. Bonus points: clicking the Export button produces a ZIP file with all images and the
+(image) Title and Filename. Clicking the Export button produces a ZIP file with all images and the
 CSV file mentioned above.
-10. Bonus points: The #posts and #views should update every 15 seconds without reloading
+10. The #posts and #views should update every 15 seconds without reloading
 the page.
